@@ -1,5 +1,6 @@
 multicdf <- function(observed,pcdfobj,nosupport=NA,interpolate=F){
 	mcdf_vals <- c()
+	observed <- as.data.frame(observed)
 	for (i in 1:ncol(observed)){
 		training_densities_var <- pcdfobj$pcdfs[[i]]
 		if(interpolate){
@@ -27,21 +28,37 @@ multicdf <- function(observed,pcdfobj,nosupport=NA,interpolate=F){
 
 jdensity <- function(observed,steps,pcdfs,nosupport=NA,partial=T,interpolate=F){
 	jdensity <- c()
+	observed <- as.data.frame(observed)
+	n_variables <- ncol(observed)
 	observed_max <- observed + steps
 	observed_min <- observed - steps
+	pcdf_ranges <- lapply(pcdfs$pcdfs,function(x)range(x$value))
+	pcdf_ranges <- do.call(cbind,pcdf_ranges)
 	max_density <- multicdf(observed_max,pcdfs,nosupport,interpolate)
 	min_density <- multicdf(observed_min,pcdfs,nosupport,interpolate)
 	jdensities <- cbind(min_density,max_density)
 	if(partial){
-		jdensities <- apply(jdensities,1,function(x){
-			if(all(is.na(x))){
-				return(x)
-			} else if(is.na(x[1])){
-				return(c(0,x[2]))
-			} else if(is.na(x[2])){
-				return(c(x[1],1))
+		for(j in 1:n_variables){
+			overlap <- findOverlap(c(observed_min[j],observed_max[j]),pcdf_ranges[,j])
+			#print(overlap)
+			#print(jdensities)
+			if(overlap == 1){
+				jdensities[j,1] <- 0
+				jdensities[j,2] <- 1
+			} else if(overlap == 2){
+				jdensities[j,1] <- 0
+			} else if(overlap == 3){
+				jdensities[j,1] <- 0
+				jdensities[j,2] <- 0
+			} else if(overlap == 4){
+				#leave jdensity alone
+			} else if(overlap == 5){
+				jdensities[j,2] <- 1
+			} else if(overlap == 6){
+				jdensities[j,1] <- 0
+				jdensities[j,2] <- 0
 			}
-		})
+		}
 	}
 	return(jdensities)
 }
@@ -49,7 +66,6 @@ jdensity <- function(observed,steps,pcdfs,nosupport=NA,partial=T,interpolate=F){
 pcdf <- function(traindf,interpolate=F){
 	traindf_dims <- dim(traindf)[1]
 	traindf_densities <- densdf(traindf,traindf_dims[1])
-	print(traindf_densities)
 	pdf_total_integrals <- unlist(lapply(traindf_densities,pdfIntegral))
 	pcdfs <-  lapply(traindf_densities,function(x)data.frame(value=x[,1],pdfun=x[,2],cdfun=cumsum(x[,2])))
 	if(interpolate){
@@ -58,10 +74,6 @@ pcdf <- function(traindf,interpolate=F){
 		cdfs_interpolated <- NA
 	}
 	return(list(pcdfs=pcdfs,total_integrals=pdf_total_integrals,cdfs_interpolated=cdfs_interpolated))
-}
-
-checkStepSizeEquality <- function(df){
-
 }
 
 densdf <- function(df,nobs){
@@ -80,31 +92,6 @@ densdf <- function(df,nobs){
 }
 
 pdfIntegral <- function(df){
-   integral <- sum(df[,2][1:(nrow(df)-1)] * diff(df[,1]))
+   integral = sum(df[,2][1:(nrow(df)-1)] * diff(df[,1]))
    return(integral)
-}
-
-numericFactorLevels <- function(x){
-   return(cbind(as.numeric(levels(x[,1])),x[,2]))
-}
-
-findClosest <- function(x,v){
-   insupport <- (x >= min(v) && x <= max(v))
-   if(insupport){
-      if(any(x == v)){
-         return(x)
-      } else {
-         lower_index <- which(diff(v > x) == 1)
-         upper_index <- lower_index + 1
-         lower_diff <- abs(x - v[lower_index])
-         upper_diff <- abs(x - v[upper_index])
-         if(lower_diff <= upper_diff){
-            return(v[lower_index])
-            } else {
-               return(v[upper_index])
-               }
-         }
-   } else {
-      return(NA)
-   }
 }

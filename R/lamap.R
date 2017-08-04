@@ -1,28 +1,45 @@
-#' LAMAP main function
+#' LAMAP main functions
 #'
 #' This function
 #'
 #'
 #'
 #'
-lamap <- function(observed,knownsites,...){
-
-}
-
-knownsite <- function(knownsitedf){
-   nvars <- ncols(knownsitedf)
-   siteid <- unique(knownsitedf$id)
-   if(is.null(siteid) | length(siteid) > 1){
-      stop("Error: missing or non-unique site id")
+lamap <- function(observed,
+                  knownsite_pcdfs,
+                  knownsite_coords,
+                  steps,
+                  maxsites=NULL,
+                  weightfun=NULL,
+                  weightparams=NULL,
+                  combinations=NULL,
+                  ...){
+   if(ncol(observed) < 3){
+      stop(paste("Missing columns. There should be two leading columns ",
+                 "in observed for x and y coordinates, followed by one ",
+                 "or more variable columns.",
+                 sep=""))
    }
-   if(is.null(knownsitedf$x) | is.null(knownsitedf$y)){
-      stop("Error: missing site coordinates")
+   sitedists <- orderSites(test_observed,knownsite_coords)
+   if(!is.null(maxsites)){
+      sites_included <- sitedists[1:maxsites,"index"]
+   } else {
+      sites_included <- sitedists[,"index"]
    }
-   sitecoord_x <- (max(knownsitedf$x) - min(knownsitedf$x))/2
-   sitecoord_y <- (max(knownsitedf$y) - min(knownsitedf$y))/2
-   pcdfs <- pcdf(knownsitedf[,c(4:nvars)])
-   site <- list(siteid=siteid,
-      sitecoords=c(sitecoord_x,sitecoord_y),
-      pcdfs=pcdfs)
-   return(site)
+   n_knownsites <- length(knownsite_pcdfs[sites_included])
+   if(is.null(combinations)){
+      combinations <- prepCombinations(n_knownsites)
+   }
+   jdensities <- lapply(knownsite_pcdfs[sites_included],function(jds){
+      jdensity(observed=observed[,-c(1,2)],steps=steps,pcdfs=jds,...)
+   })
+   prob_scores <- sapply(jdensities,function(x){
+      prod(x[,2]-x[,1])
+   })
+   if(!is.null(weightfun)){
+      weights <- weight(sitedists[1:maxsites,"dist"],weightfun,weightparams)
+      prob_scores = prob_scores * weights
+   }
+   prob_union <- unionIndependent(prob_scores,combinations=NULL)
+   return(prob_union)
 }

@@ -32,3 +32,5 @@ site_id = numpy.repeat(feat[0],npixels)
 xcoords = numpy.arange(x_min,x_max,geospatialinfo[1])
 ycoords = numpy.arange(y_min,y_max,geospatialinfo[5])
 rcoords = numpy.array([(y,x) for y in ycoords for x in xcoords])
+
+apply(as.data.frame(test_cells),1,lamap,knownsite_pcdfs=knownsite_pcdfs,knownsite_coords=knownsite_coords,steps=c(1000,5,500),maxsites=15,nosupport=NA,partial=T)

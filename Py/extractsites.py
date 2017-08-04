@@ -7,11 +7,11 @@ import processing
 import numpy
 #Paths
 vlayer_path = "/Volumes/WCCDefiant/Data/GIS/LAMAP/Development/Data/BC_sites.shp"
-rlayer_path = "/Volumes/WCCDefiant/Data/GIS/LAMAP/Development/Data/raster_input.tif"
+rlayer_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Test/BC_raster_merged.tif"
 temp_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Temp/"
 xyz_out_path = "/Users/ccarleton/Documents/xyz.csv"
 #variables
-buff_size = 500
+buff_size = 100
 #load vlayer
 vlayer = iface.addVectorLayer(vlayer_path, "sites", "ogr")
 if not vlayer:
@@ -27,7 +27,7 @@ iterfeatures = vlayer.getFeatures()
 for feat in iterfeatures:
     vlayer.select(feat.id())
     buff_path = temp_path + "tempbuff.shp"
-    clipped_rlayer_path = temp_path + "temprast.tif"
+    clipped_rlayer_path = temp_path + "temprast" + str(feat[0]) + ".tif"
     QgsGeometryAnalyzer().buffer(vlayer,
                                  buff_path,
                                  buff_size,
@@ -50,13 +50,15 @@ for feat in iterfeatures:
     nbands = clipped_rlayer.RasterCount
     npixels = numpy.product(rdims)
     clipped_rlayer_array = clipped_rlayer.ReadAsArray()
+    dx = numpy.round(geospatialinfo[1])
+    dy = numpy.round(geospatialinfo[5])
     x_min = geospatialinfo[0]
-    x_max = geospatialinfo[0]+(geospatialinfo[1]*(rdims[0]-1))
+    x_max = geospatialinfo[0]+(dx*(rdims[0]))
     y_max = geospatialinfo[3]
-    y_min = geospatialinfo[3]+(geospatialinfo[5]*(rdims[1]))
+    y_min = geospatialinfo[3]+(dy*(rdims[1]))
     site_id = numpy.repeat(feat[0],npixels)
     xcoords = numpy.arange(x_min,x_max,geospatialinfo[1])
-    ycoords = numpy.arange(y_max,y_min,geospatialinfo[5])[:-1]
+    ycoords = numpy.arange(y_max,y_min,geospatialinfo[5])
     rcoords = numpy.array([(y,x) for y in ycoords for x in xcoords])
     if nbands > 1:
         array_reshape = numpy.reshape(clipped_rlayer_array,(-1,npixels)).T
@@ -64,5 +66,6 @@ for feat in iterfeatures:
     else:
         xyz = numpy.column_stack((site_id,rcoords,numpy.reshape(clipped_rlayer_array,(1,-1)).T))
     numpy.savetxt(f,xyz,delimiter=",")
+    clipped_rlayer=None
 #next is to write (append) the xyz to a CSV file
 f.close()

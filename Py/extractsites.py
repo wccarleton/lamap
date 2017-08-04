@@ -6,10 +6,10 @@ from osgeo import gdal
 import processing
 import numpy
 #Paths
-vlayer_path = "/Volumes/WCCDefiant/Data/GIS/LAMAP/Development/Data/BC_sites.shp"
-rlayer_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Test/BC_raster_merged.tif"
-temp_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Temp/"
-xyz_out_path = "/Users/ccarleton/Documents/xyz.csv"
+vlayer_path = "/PATH/TO/SITES.shp"
+rlayer_path = "/PATH/TO/RASTER/STACK.tif"
+temp_path = "/PATH/FOR/TEMP/FILES/"
+xyz_out_path = "/PATH/FOR/OUTPUT/xyz.csv"
 #variables
 buff_size = 100
 #load vlayer

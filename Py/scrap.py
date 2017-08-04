@@ -34,3 +34,11 @@ ycoords = numpy.arange(y_min,y_max,geospatialinfo[5])
 rcoords = numpy.array([(y,x) for y in ycoords for x in xcoords])
 
 apply(as.data.frame(test_cells),1,lamap,knownsite_pcdfs=knownsite_pcdfs,knownsite_coords=knownsite_coords,steps=c(1000,5,500),maxsites=15,nosupport=NA,partial=T)
+
+
+PATHS:
+
+vlayer_path = "/Volumes/WCCDefiant/Data/GIS/LAMAP/Development/Data/BC_sites.shp"
+rlayer_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Test/BC_raster_merged.tif"
+temp_path = "/Users/ccarleton/Documents/Academia/Projects/LAMAP/Data/Temp/"
+xyz_out_path = "/Users/ccarleton/Documents/xyz.csv"

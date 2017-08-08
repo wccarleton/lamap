@@ -3,7 +3,8 @@ Title: The Locally Adaptive Model of Archaeological Potential
 Version: 0.1
 Authors@R: person("W. Christopher", "Carleton", email = "w.ccarleton@gmail.com", role = c("aut", "cre"))
 Description: This package is used to calculate the Locally Adaptive Model of Archaeological Potential as described in Carleton, W., Conolly J., and Iannone G. 2012. A Locally-Adaptive Model of Archaeological Potential (LAMAP). Journal of Archaeological Science, 39(11):3371–3385.
-Depends: R (>= 3.3.1), sp, rgdal
+Depends: R (>= 3.3.1), sp, rgdal, raster, snow
 License: MIT License
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.0.1

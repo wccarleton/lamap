@@ -1,13 +1,18 @@
-#' Probability of union of independent events
+#' unionIndependent
 #'
-#' Calculates the probability of the union of independent events, given a vector of probabilities
+#' Calculates the probability of a union of independent events using the
+#' Law of Total probability and the inclusion-exclusion principle.
 #'
-#' @param probs vector of probabilities
-#'
-#' @examples
-#' unionIndependent(probs)
-#'
+#' @param probs A vector of probabilities
+#' @param combinations A list of matrices containing the the possible
+#'  of probabilities. This values in the matrix cells should be the indeces of
+#'  the probabilities in the vector 'probs'. Default is Null—so the combinations
+#'  will be arranged by the function. To create this combination list, you can
+#'  use the 'prepCombinations' convenience function provided in the 'lamap'
+#'  package.
+#' @return Probability of the union.
 #' @export
+
 unionIndependent <- function(probs,combinations=NULL) {
 	nprobs <- length(probs)
 	intsctn <- c()

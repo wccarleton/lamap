@@ -17,9 +17,9 @@
 #' @param knownsite_pcdfs List of of lists containing cdfs for each known site.
 #'  See 'pcdf()'.
 #' @param knownsite_coords Dataframe containing xy coordinates for each known
-#'  site. The columns need to be named "id","x","y". The ids should be ordered
+#'  site. The columns need to be named "id","x","y". The ids must be ordered
 #'  to correspond to the order of sites in the knownsite_pcdfs list. For now,
-#'  only UTM coordinates should be used.
+#'  only UTM coordinates are supported.
 #' @param steps A vector of window sizes for each variable of interest. The
 #'  steps will be used to estimate integrals from the knownsite_pcdfs. They
 #'  will be added/subtracted from the observed values to create integration
@@ -34,8 +34,8 @@
 #' @param weightfun The function used to weight the lamap values by distance.
 #'  It can be one of 'uniform' or 'exponential'—see 'weight' function.
 #' @param weightparams A vector of parameters passed to the 'weight' function.
-#' @param combinations A conveience paramter used to speed up calculations. The
-#'  lamap calculation involves the use of hte inclusion-exclusion principle for
+#' @param combinations A conveience parameter used to speed up calculations. The
+#'  lamap calculation involves the use of the inclusion-exclusion principle for
 #'  estimating the total probability of a union of independent events.
 #'  Consequently, the R 'combn' function is used and can slow the calculations
 #'  considerably. However, the user can instead use a utility function provided
@@ -59,7 +59,7 @@ parLamap <- function(cluster_object,
                      combinations=NA,
                      nosupport=NA,
                      partial=T){
-   rasterdata <- stack(raster_data)
+   rasterdata <- stack(rasterpath)
    lamap_surface <- raster(ext=extent(rasterdata),
                            crs=projection(rasterdata),
                            resolution=res(rasterdata))

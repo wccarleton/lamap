@@ -66,7 +66,7 @@ lamap <- function(observed,
                  "or more variable columns.",
                  sep=""))
    }
-   sitedists <- orderSites(test_observed,knownsite_coords)
+   sitedists <- orderSites(observed,knownsite_coords)
    if(!is.null(maxsites)){
       sites_included <- sitedists[1:maxsites,"index"]
    } else {

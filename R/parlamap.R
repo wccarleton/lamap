@@ -70,7 +70,7 @@ parLamap <- function(cluster_object,
    if(is.na(maxsites)){
       maxsites <- nrow(knownsite_coords)
    }
-   l1 <- writeStart(lamap_surface,lamap_output_path,overwrite=T)
+   l1 <- writeStart(lamap_surface,outputpath,overwrite=T)
    for(j in 1:nrasterrows){
       lamaprow <- parSapply(cluster_object,
                         raster_output_cellnums[j,],

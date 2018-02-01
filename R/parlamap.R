@@ -58,7 +58,8 @@ parLamap <- function(cluster_object,
                      weightparams,
                      combinations=NA,
                      nosupport=NA,
-                     partial=T){
+                     partial=T,
+                     nrows=NULL){
    rasterdata <- stack(rasterpath)
    lamap_surface <- raster(ext=extent(rasterdata),
                            crs=projection(rasterdata),
@@ -66,7 +67,12 @@ parLamap <- function(cluster_object,
    raster_output_cellnums <- matrix(1:ncell(lamap_surface),
                                     nrow=nrow(rasterdata),
                                     byrow=T)
-   nrasterrows <- nrow(rasterdata)
+   if(is.null(nrows)){
+      nrasterrows <- nrow(rasterdata)
+   }else{
+      nrasterrows <- nrows
+   }
+
    if(is.na(maxsites)){
       maxsites <- nrow(knownsite_coords)
    }

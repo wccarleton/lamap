@@ -56,7 +56,7 @@ w_uniform <- function(x,param){
 #' @export
 
 w_exponential <- function(x,param){
-   if(!is.na(param[2]) || !is.null(param[2])){
+   if(!is.na(param[2])){
       max_x <- param[2]
    } else {
       max_x <- max(x)

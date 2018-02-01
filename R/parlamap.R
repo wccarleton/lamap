@@ -53,7 +53,7 @@ parLamap <- function(cluster_object,
                      knownsite_pcdfs,
                      knownsite_coords,
                      steps,
-                     maxsites=NA,
+                     maxsites=NULL,
                      weightfun,
                      weightparams,
                      combinations=NULL,
@@ -73,7 +73,7 @@ parLamap <- function(cluster_object,
       nrasterrows <- nrows
    }
 
-   if(is.na(maxsites) || is.null(maxsites)){
+   if(is.null(maxsites)){
       maxsites <- nrow(knownsite_coords)
    }
    l1 <- writeStart(lamap_surface,outputpath,format="GTiff",overwrite=T)

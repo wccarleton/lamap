@@ -56,7 +56,7 @@ parLamap <- function(cluster_object,
                      maxsites=NA,
                      weightfun,
                      weightparams,
-                     combinations=NA,
+                     combinations=NULL,
                      nosupport=NA,
                      partial=T,
                      nrows=NULL){
@@ -73,10 +73,10 @@ parLamap <- function(cluster_object,
       nrasterrows <- nrows
    }
 
-   if(is.na(maxsites)){
+   if(is.na(maxsites) || is.null(maxsites)){
       maxsites <- nrow(knownsite_coords)
    }
-   l1 <- writeStart(lamap_surface,outputpath,overwrite=T)
+   l1 <- writeStart(lamap_surface,outputpath,format="GTiff",overwrite=T)
    for(j in 1:nrasterrows){
       lamaprow <- parSapply(cluster_object,
                         raster_output_cellnums[j,],

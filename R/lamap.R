@@ -86,6 +86,6 @@ lamap <- function(observed,
       weights <- weight(sitedists[1:maxsites,"dist"],weightfun,weightparams)
       prob_scores = prob_scores * weights
    }
-   prob_union <- unionIndependent(prob_scores,combinations=NULL)
+   prob_union <- unionIndependent(prob_scores,combinations)
    return(prob_union)
 }

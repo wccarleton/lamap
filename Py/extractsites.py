@@ -6,12 +6,12 @@ from osgeo import gdal
 import processing
 import numpy
 #Paths
-vlayer_path = "/PATH/TO/SITES.shp"
-rlayer_path = "/PATH/TO/RASTER/STACK.tif"
-temp_path = "/PATH/FOR/TEMP/FILES/"
-xyz_out_path = "/PATH/FOR/OUTPUT/xyz.csv"
-#variables
-buff_size = 100
+vlayer_path = "/PATH_TO_SITE_SHAPEFILE/sites_as_points.shp"
+rlayer_path = "/PATH_TO_RASTER_STACK/stack.tif"
+temp_path = "/TEMP_FILES_PATH/"
+xyz_out_path = "/OUTPUT_PATH/known_sites.csv"
+#variables—make this buffer whatever you want, of course
+buff_size = 200
 #load vlayer
 vlayer = iface.addVectorLayer(vlayer_path, "sites", "ogr")
 if not vlayer:
@@ -24,10 +24,12 @@ if not rlayer.isValid():
 f=open(xyz_out_path,"a")
 #loop over features (points) to extract raster data
 iterfeatures = vlayer.getFeatures()
+#column number in the attribute table to use as feat.id below---must be INT
+featureid = 31
 for feat in iterfeatures:
     vlayer.select(feat.id())
     buff_path = temp_path + "tempbuff.shp"
-    clipped_rlayer_path = temp_path + "temprast" + str(feat[0]) + ".tif"
+    clipped_rlayer_path = temp_path + "temprast" + str(feat[featureid]) + ".tif"
     QgsGeometryAnalyzer().buffer(vlayer,
                                  buff_path,
                                  buff_size,
@@ -40,7 +42,16 @@ for feat in iterfeatures:
         -9999,
         False,
         True,
-        None,
+        True,
+        5,
+        0,
+        1,
+        1,
+        1,
+        False,
+        0,
+        "",
+        False,
         clipped_rlayer_path)
     vlayer.deselect(feat.id())
     clipped_rlayer = gdal.Open(clipped_rlayer_path)
@@ -56,7 +67,7 @@ for feat in iterfeatures:
     x_max = geospatialinfo[0]+(dx*(rdims[0]))
     y_max = geospatialinfo[3]
     y_min = geospatialinfo[3]+(dy*(rdims[1]))
-    site_id = numpy.repeat(feat[0],npixels)
+    site_id = numpy.repeat(feat[featureid],npixels)
     xcoords = numpy.arange(x_min,x_max,geospatialinfo[1])
     ycoords = numpy.arange(y_max,y_min,geospatialinfo[5])
     rcoords = numpy.array([(y,x) for y in ycoords for x in xcoords])

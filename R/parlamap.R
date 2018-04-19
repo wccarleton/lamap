@@ -77,7 +77,7 @@ parLamap <- function(cluster_object,
       maxsites <- nrow(knownsite_coords)
    }
    if(!is.null(progress)){
-      progress_file <- file(progress,open="a")
+      progress_file <- file(progress,open="w")
    }
    l1 <- writeStart(lamap_surface,outputpath,format="GTiff",overwrite=T)
    for(j in rasterrows[1]:rasterrows[2]){
@@ -96,7 +96,7 @@ parLamap <- function(cluster_object,
                         partial=partial)
       writeValues(l1,t(lamaprow),j)
       if(!is.null(progress)){
-         cat("\r",j/rasterrows[2]," %",file=progress_file)
+         cat("\r",j/rasterrows[2]*100,"%",file=progress_file)
       }
    }
    if(!is.null(progress)){

@@ -43,7 +43,7 @@
 #'  then be saved and passed to the lamap function with this parameter, saving
 #'  the algorithm from having to regenerate the combinations for every cell in
 #'  in the desired output map.
-#' @return Returns '1' when finished executing. The LAMAP output surface will be
+#' @return Returns '0' when finished executing. The LAMAP output surface will be
 #'  stored in the 'outputpath'.
 #' @export
 
@@ -59,7 +59,8 @@ parLamap <- function(cluster_object,
                      combinations=NULL,
                      nosupport=NA,
                      partial=T,
-                     nrows=NULL){
+                     rows=NULL,
+                     progress=NULL){
    rasterdata <- stack(rasterpath)
    lamap_surface <- raster(ext=extent(rasterdata),
                            crs=projection(rasterdata),
@@ -67,17 +68,19 @@ parLamap <- function(cluster_object,
    raster_output_cellnums <- matrix(1:ncell(lamap_surface),
                                     nrow=nrow(rasterdata),
                                     byrow=T)
-   if(is.null(nrows)){
-      nrasterrows <- nrow(rasterdata)
+   if(is.null(rows)){
+      rasterrows <- c(1,nrow(rasterdata))
    }else{
-      nrasterrows <- nrows
+      rasterrows <- rows
    }
-
    if(is.null(maxsites)){
       maxsites <- nrow(knownsite_coords)
    }
+   if(!is.null(progress)){
+      progress_file <- file(progress,open="a")
+   }
    l1 <- writeStart(lamap_surface,outputpath,format="GTiff",overwrite=T)
-   for(j in 1:nrasterrows){
+   for(j in rasterrows[1]:rasterrows[2]){
       lamaprow <- parSapply(cluster_object,
                         raster_output_cellnums[j,],
                         parLamapCaller,
@@ -92,9 +95,15 @@ parLamap <- function(cluster_object,
                         nosupport=nosupport,
                         partial=partial)
       writeValues(l1,t(lamaprow),j)
+      if(!is.null(progress)){
+         cat(j,file=progress_file)
+      }
+   }
+   if(!is.null(progress)){
+      close(progress_file)
    }
    l1 <- writeStop(l1)
-   return(1)
+   return(0)
 }
 
 #' parLamapCaller

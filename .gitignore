@@ -1,7 +1,4 @@
 .Rproj.user
 .Rhistory
 .RData
-.R/scrap.R
-.R/parallelscript.R
-.Py/scrap.py
-.Py/extractsites_run.py
+./Py/extractsites_run.py

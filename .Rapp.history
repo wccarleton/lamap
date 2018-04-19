@@ -1,0 +1,516 @@
+jecdf(cars[3,],cars)
+jecdf(cars[1,],cars)
+temp
+cars
+jecdf(data.frame(30,52),cars)
+jecdf(data.frame(speed=30,dist=52),cars)
+jecdf(data.frame(speed=c(30),dist=c(52)),cars)
+cars[30,]
+data.frame(speed=c(30),dist=c(52))
+temp
+temp[,2]
+temp[,1]
+temp
+temp[[1]]
+temp[[1]][,1]
+an(temp[[1]][,1]==30)
+any(temp[[1]][,1]==30)
+any(temp[[1]][,1]==11)
+any(temp[[1]][,1]==21)
+any(temp[[1]][,1]=<21)
+any(temp[[1]][,1]<=21)
+temp[[1]][,1]<=21
+diff(temp[[1]][,1]<=21)
+diff(temp[[1]][,1]>=21)
+which(diff(temp[[1]][,1]>=21)==1)
+which(diff(temp[[1]][,1]>=21)==1)+1
+which(diff(temp[[1]][,1]>=3)==1)+1
+which(diff(temp[[1]][,1]>=3)==1)
+which(diff(temp[[1]][,1]>=3)==1)+1
+which(diff(temp[[1]][,1]>=3)==1)==0
+which(diff(temp[[1]][,1]>=3)==1)==1
+logical(0)
+which(diff(temp[[1]][,1]>=3)==1)==F
+which(diff(temp[[1]][,1]>=3)==1)==T
+which(diff(temp[[1]][,1]>=3)==1)
+findClosest(x,v){#
+   support <- x >= min(v) && x <= max(v)#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(x,v){#
+   print((x >= min(v) && x <= max(v)))#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(x,v){#
+   print((x >= min(v) && x <= max(v)))#
+   support <- 1#(x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+temp[[1]][,1]
+findClosest(5,temp[[1]][,1])
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   print(support)#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1) + 1#
+      print(lower_index)#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      print(lower_diff)#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(5,temp[[1]][,1])
+findClosest(1,temp[[1]][,1])
+findClosest(5,temp[[1]][,1])
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1)#
+      print(lower_index)#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(diff(x,v[lower_index]))#
+      print(lower_diff)#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(5,temp[[1]][,1])
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1)#
+      print(v[lower_index])#
+      upper_index <- lower_index + 1#
+      print(v[upper_index])#
+      lower_diff <- abs(x - v[lower_index])#
+      print(lower_diff)#
+      upper_diff <- abs(diff(x,v[lower_index]))#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(5,temp[[1]][,1])
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1)#
+      print(v[lower_index])#
+      upper_index <- lower_index + 1#
+      print(v[upper_index])#
+      lower_diff <- abs(x - v[lower_index])#
+      print(lower_diff)#
+      upper_diff <- abs(x - v[upper_index])#
+      print(upper_diff)#
+      if(lower_diff >= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(5,temp[[1]][,1])
+findClosest <- function(x,v){#
+   support <- (x >= min(v) && x <= max(v))#
+   if(support){#
+      lower_index <- which(diff(v >= x) == 1)#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(x - v[lower_index])#
+      upper_diff <- abs(x - v[upper_index])#
+      if(lower_diff <= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+findClosest(5,temp[[1]][,1])
+findClosest(1,temp[[1]][,1])
+temp[[1]][,1]
+findClosest(1,temp[[1]][,1])
+findClosest(21,temp[[1]][,1])
+findClosest(11,temp[[1]][,1])
+findClosest(12,temp[[1]][,1])
+findClosest(100,temp[[1]][,1])
+is.na(findClosest(100,temp[[1]][,1]))
+jecdfProb <- function(observed,traindf,nosupport=0,rnd=T){#
+	jecdfP <- c()#
+   training_freqs <- freqdf(traindf)#
+   n_train_obs <- nrow(traindf)#
+	for (i in 1:ncol(observed)){#
+      training_freqs_var <- training_freqs[[i]]#
+      closest_val <- findClosest(observed[,i],training_freqs_var)#
+      if(!is.na(closest_val) && rnd){#
+         delta_y <- training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),2]/n_train_obs#
+         delta_x <- diff(training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),1])#
+         cdf_integral <- sum(delta_y[-1] * delta_x)#
+      }#
+      else {#
+         cdf_integral <- nosupport#
+      }#
+		jecdfP <- c(jecdf,cdf_integral)#
+	}#
+	return(prod(jecdfP))#
+}#
+#
+freqdf <- function(df){#
+   frequencies <- apply(df,2,function(x)as.data.frame(table(x)))#
+   frequencies <- lapply(frequencies,numericFactorLevels)#
+   return(frequencies)#
+}#
+#
+numericFactorLevels <- function(x){#
+   return(cbind(as.numeric(levels(x[,1])),x[,2]))#
+}#
+#
+findClosest <- function(x,v){#
+   insupport <- (x >= min(v) && x <= max(v))#
+   if(insupport){#
+      lower_index <- which(diff(v >= x) == 1)#
+      upper_index <- lower_index + 1#
+      lower_diff <- abs(x - v[lower_index])#
+      upper_diff <- abs(x - v[upper_index])#
+      if(lower_diff <= upper_diff){#
+         return(v[lower_index])#
+      } else {#
+         return(v[upper_index])#
+      }#
+   } else {#
+      return(NA)#
+   }#
+}
+jecdfProb(data.frame(speed=30,dist=52),cars)
+jecdfProb(cars[30,],cars)
+jecdfProb <- function(observed,traindf,nosupport=0,rnd=T){#
+	jecdfP <- c()#
+   training_freqs <- freqdf(traindf)#
+   n_train_obs <- nrow(traindf)#
+	for (i in 1:ncol(observed)){#
+      training_freqs_var <- training_freqs[[i]]#
+      closest_val <- findClosest(observed[,i],training_freqs_var)#
+      if(!is.na(closest_val) && rnd){#
+         delta_y <- training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),2]/n_train_obs#
+         delta_x <- diff(training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),1])#
+         cdf_integral <- sum(delta_y[-1] * delta_x)#
+      }#
+      else {#
+         cdf_integral <- nosupport#
+      }#
+		jecdfP <- c(jecdf,cdf_integral)#
+      print(jecdfP)#
+	}#
+	return(prod(jecdfP))#
+}
+jecdfProb(data.frame(speed=30,dist=52),cars)
+jecdfProb <- function(observed,traindf,nosupport=0,rnd=T){#
+	jecdfP <- c()#
+   training_freqs <- freqdf(traindf)#
+   n_train_obs <- nrow(traindf)#
+	for (i in 1:ncol(observed)){#
+      training_freqs_var <- training_freqs[[i]]#
+      closest_val <- findClosest(observed[,i],training_freqs_var)#
+      if(!is.na(closest_val) && rnd){#
+         delta_y <- training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),2]/n_train_obs#
+         delta_x <- diff(training_freqs_var[1:which(training_freqs_var[,1]==observed[,i]),1])#
+         cdf_integral <- sum(delta_y[-1] * delta_x)#
+      }#
+      else {#
+         cdf_integral <- nosupport#
+      }#
+		jecdfP <- c(jecdfP,cdf_integral)#
+      print(jecdfP)#
+	}#
+	return(prod(jecdfP))#
+}
+jecdfProb(cars[30,],cars)
+jecdfProb(data.frame(speed=30,dist=52),cars)
+jecdfProb(data.frame(speed=30,dist=52),cars,nosupport=0.01)
+jecdfProb <- function(observed,traindf,nosupport=0,rnd=T){#
+	jecdfP <- c()#
+   training_freqs <- freqdf(traindf)#
+   n_train_obs <- nrow(traindf)#
+	for (i in 1:ncol(observed)){#
+      training_freqs_var <- training_freqs[[i]]#
+      closest_val <- findClosest(observed[,i],training_freqs_var)#
+      if(!is.na(closest_val) && rnd){#
+         delta_y <- training_freqs_var[1:which(training_freqs_var[,1]==closest_val),2]/n_train_obs#
+         delta_x <- diff(training_freqs_var[1:which(training_freqs_var[,1]==closest_val),1])#
+         cdf_integral <- sum(delta_y[-1] * delta_x)#
+      }#
+      else {#
+         cdf_integral <- nosupport#
+      }#
+		jecdfP <- c(jecdfP,cdf_integral)#
+      print(jecdfP)#
+	}#
+	return(prod(jecdfP))#
+}
+jecdfProb(data.frame(speed=30,dist=52),cars)
+jecdfProb(cars[30,],cars)
+jecdfProb(cars[30,],cars,rnd=F)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[30,],cars,rnd=F)
+jecdfProb(cars[30,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[30,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[30,],cars)
+jecdfProb(cars[1,],cars)
+jecdfProb(cars[10,],cars)
+jecdfProb(cars[2,],cars)
+jecdfProb(cars[3,],cars)
+cars[,1]
+cars[1,]
+findClosest(4,cars[,2])
+cars
+temp
+findClosest(4,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(4,temp[[1]][,1])
+findClosest(1,temp[[1]][,1])
+findClosest(4,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(4,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(4,temp[[1]][,1])
+findClosest(5,temp[[1]][,1])
+findClosest(4,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(4,temp[[1]][,1])
+findClosest(1,temp[[1]][,1])
+findClosest(3,temp[[1]][,1])
+findClosest(4,temp[[1]][,1])
+findClosest(5,temp[[1]][,1])
+findClosest(6,temp[[1]][,1])
+temp[[1]][,1]
+findClosest(5.5,temp[[1]][,1])
+findClosest(5.9,temp[[1]][,1])
+findClosest(21,temp[[1]][,1])
+findClosest(25,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(25,temp[[1]][,1])
+findClosest(26,temp[[1]][,1])
+findClosest(4,temp[[1]][,1])
+findClosest(3,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(3,temp[[1]][,1])
+findClosest(11,temp[[1]][,1])
+findClosest(22,temp[[1]][,1])
+findClosest(21,temp[[1]][,1])
+findClosest(21.5,temp[[1]][,1])
+findClosest(21.3,temp[[1]][,1])
+findClosest(21.4,temp[[1]][,1])
+temp[[1]][,1]
+findClosest(21.1,temp[[1]][,1])
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+findClosest(21.1,temp[[1]][,1])
+diff(temp[[1]][,1])
+21-temp[[1]][,1]
+abs(21-temp[[1]][,1])
+abs(21.1-22)
+abs(21.1-20)
+jecdfProb(cars[2,],cars)
+jecdfProb(cars[1,],cars)
+cars[1,]
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[1,],cars)
+jecdfProb(cars[30,],cars)
+cars[,1]
+cars[1,]
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[30,],cars)
+cars[30,]
+jecdfProb(cars[1,],cars)
+jecdfProb(cars[2,],cars)
+jecdfProb(cars[3,],cars)
+jecdfProb(cars[30,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(cars[3,],cars)
+jecdfProb(data.frame(speed=c(15),dist=c(60)),cars)
+jecdfProb(data.frame(speed=c(15),dist=c(100)),cars)
+jecdfProb(data.frame(speed=c(40),dist=c(100)),cars)
+jecdfProb(data.frame(speed=c(30),dist=c(100)),cars)
+jecdfProb(data.frame(speed=c(15),dist=c(100)),cars)
+jecdfProb(data.frame(speed=c(15),dist=c(60)),cars)
+source("~/Development/RDev/Lamap/lamap/R/jecdf.R")
+jecdfProb(data.frame(speed=c(15),dist=c(60)),cars)
+jecdfProb(data.frame(speed=c(20),dist=c(60)),cars)
+jecdfProb(data.frame(speed=c(25),dist=c(100)),cars)
+cumsum(nrorm(100))
+cumsum(rnorm(100))
+write.csv(cumsum(rnorm(100)),file="./randwalk.csv")
+qnorm(1,1,2)
+qrnorm(1,1,2)
+prnorm(1,1,2)
+pnorm(1,1,2)
+pnorm(1,2,2)
+(pnorm(1,2,2)*0.5)+(pnorm(1,1,2)*0.5)
+(0.5*pnorm(1,1,2))/((pnorm(1,2,2)*0.5)+(pnorm(1,1,2)*0.5))
+dnorm(1,2,2)
+(0.5*dnorm(1,1,2))/((dnorm(1,2,2)*0.5)+(dnorm(1,1,2)*0.5))
+?dnom
+?dnorm
+install.packages("LearnBayes")
+library(LearnBayes)
+p = seq(0.05, 0.95, by = 0.1)
+prior = c(1, 5.2, 8, 7.2, 4.6, 2.1, 0.7, 0.1, 0, 0)
+prior = prior/sum(prior)
+plot(p, prior, type = "h", ylab="Prior Probability")0.2 0.4 0.6 0.80.05
+plot(p, prior, type = "h", ylab="Prior Probability")
+?pdisc
+pdisc
+?pdisc
+p + 0.5 * (p == 0) - 0.5 * (p == 1)
+c0,p) + 0.5 * (c(0,p) == 0) - 0.5 * (c(0,p) == 1)
+c(0,p) + 0.5 * (c(0,p) == 0) - 0.5 * (c(0,p) == 1)
+p1=p + 0.5 * (p == 0) - 0.5 * (p == 1)
+like = s * log(p1) + f * log(1 - p1)
+like = 11 * log(p1) + 16 * log(1 - p1)
+like
+like * (p > 0) * (p < 1) - 999 * ((p == 0) * (s > 0) + (p == 1) * (f > 0))
+like * (p > 0) * (p < 1) - 999 * ((p == 0) * (11 > 0) + (p == 1) * (16 > 0))
+like-max(like)
+exp(like-max(like))
+pdisc(p,prior,c(11,16))
+save.image("Documents/Academia/Projects/Bayes/R_workspaces/learnbayes.R")
+?rbinom
+dbinom(0.5,12,0.5)
+dbinom(6,12,0.5)
+dbinom(12,24,0.5)
+dbinom(15,30,0.5)
+dbinom(1:24,30,0.5)
+plot(1:24,dbinom(1:24,30,0.5))
+plot(1:24,dbinom(1:25,30,0.5))
+plot(1:25,dbinom(1:25,30,0.5))
+plot(1:30,dbinom(1:30,30,0.5))
+plot(1:30,dbinom(1:30,30,0.5),type="l")
+dbinom(20,30,0.5)
+dbinom(7,10,0.5)
+dbinom(5,10,0.5)
+dbinom(6,10,0.5)
+dbinom(7,10,0.5)
+dbinom(20,30,0.5)
+sum(dbinom(10:20,30,0.5))
+sum(dbinom(15:20,30,0.5))
+sum(1:100*1/100)
+sum(1:100)
+sum(1:101*1/100)
+sum(1:101*(1/100))
+sum(1:99*(1/100))
+sum(1:100*(1/100))
+length(1:100)
+1:100*(1/100)
+length(25:75)
+sum(25:75*(1/51))
+sum(1:100*(1/101))
+1/101
+1/100
+sum(0:100*(1/100))
+sum(0:101*(1/100))
+sum(0:101*(1/101))
+sum(0:100*(1/101))
+sum(0:101*(1/101))
+sum(0:100*(1/101))
+setwd("Development/RDev/Lamap/lamap/")
+setwd("Development/RDev/Lamap/lamap/R/")

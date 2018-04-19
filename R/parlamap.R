@@ -96,7 +96,7 @@ parLamap <- function(cluster_object,
                         partial=partial)
       writeValues(l1,t(lamaprow),j)
       if(!is.null(progress)){
-         cat(j,file=progress_file)
+         cat("\r",j/rasterrows[2]," %",file=progress_file)
       }
    }
    if(!is.null(progress)){

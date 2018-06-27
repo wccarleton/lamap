@@ -76,16 +76,20 @@ lamap <- function(observed,
    if(is.null(combinations)){
       combinations <- prepCombinations(n_knownsites)
    }
-   jdensities <- lapply(knownsite_pcdfs[sites_included],function(jds){
-      jdensity(observed=observed[,-c(1,2)],steps=steps,pcdfs=jds,...)
-   })
-   prob_scores <- sapply(jdensities,function(x){
-      prod(x[,2]-x[,1])
-   })
-   if(!is.null(weightfun)){
-      weights <- weight(sitedists[1:length(prob_scores),"dist"],weightfun,weightparams)
-      prob_scores = prob_scores * weights
+   if(any(is.na(observed))){
+      prob_union <- NA
+   } else {
+      jdensities <- lapply(knownsite_pcdfs[sites_included],function(jds){
+         jdensity(observed=observed[,-c(1,2)],steps=steps,pcdfs=jds,...)
+         })
+      prob_scores <- sapply(jdensities,function(x){
+         prod(x[,2]-x[,1])
+         })
+      if(!is.null(weightfun)){
+         weights <- weight(sitedists[1:length(prob_scores),"dist"],weightfun,weightparams)
+         prob_scores = prob_scores * weights
+      }
+      prob_union <- unionIndependent(prob_scores,combinations)
    }
-   prob_union <- unionIndependent(prob_scores,combinations)
    return(prob_union)
 }
